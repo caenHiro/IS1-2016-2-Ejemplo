@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view contentType="text/html">
+
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    Header
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Footer
+                </p:layoutUnit>
+
+
+
+                <p:layoutUnit position="center">
+                    <br/>
+                    <h:form>
+                        Eliminar
+                        <br/>
+                        <p:autoComplete id="seccion" value="#{mBUsuario.id}"
+                                        minQueryLength="1" forceSelection="true" completeMethod="#{mBUsuario.completeUser}" 
+                                        cache="true" maxlength="4"  >
+
+                            <p:ajax update="dato1,dato2,dato3,dato4" listener="#{mBUsuario.getUsuario}"
+                                    event="blur" process="@this"/>
+                        </p:autoComplete>
+                        <br/> 
+                        <h:outputText  value="ID :" />
+                        <h:outputText id="dato1" value="#{mBUsuario.id}" />
+                        <br/><br/>
+                        <h:outputText  value="nombre :" />
+                        <h:outputText id="dato2" value="#{mBUsuario.nombre}" />
+                        <br/><br/>
+                        <h:outputText  value="apellido :" />
+                        <h:outputText id="dato3" value="#{mBUsuario.apellido}" />
+                        <br/><br/>
+                        <h:outputText  value="fecha :" />
+                        <h:outputText id="dato4" value="#{mBUsuario.fecha}" />
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <p:commandButton value="Agregar" id="ajax" 
+                                         update="msn, dato1,dato2,dato3,dato4" actionListener="#{mBUsuario.eliminaUsuario}" />
+
+                        <h:commandButton action="index"  value="Cancelar"   />
+
+
+                        <h:outputText id="msn" value="#{mBUsuario.msn}" />
+
+                    </h:form>
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </f:view>
+    </h:body>
+
+</html>
+

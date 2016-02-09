@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                Header
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                Footer
+            </p:layoutUnit>
+
+
+
+            <p:layoutUnit position="center">
+
+                <h:form>
+
+                    Modificar
+
+
+                    <br/>
+                    <br/>
+                    <p:autoComplete id="idauto" value="#{mBUsuario.id}"
+                                    minQueryLength="1" forceSelection="true" completeMethod="#{mBUsuario.completeUser}" 
+                                    cache="true" maxlength="4" 
+                                    label="ID"    >
+
+                        <p:ajax update="nombre,apellido,fecha,id" listener="#{mBUsuario.getUsuario}"
+                                event="blur" process="@this"/>
+                    </p:autoComplete>
+                    <br/>
+                    <br/>
+
+                    <h:panelGrid columns="3">
+                        <h:outputText value="Nombre :" />
+                        <p:inputText id="nombre" value="#{mBUsuario.nombre}">
+                        </p:inputText>
+                        <br/>
+                        <h:outputText value="Apellido : " />
+                        <p:inputText id="apellido" value="#{mBUsuario.apellido}">
+                        </p:inputText>
+                        <br/>
+                        <h:outputText value="ID : " />
+                        <p:inputText id="id"  disabled="true" value="#{mBUsuario.id}"  >
+                        </p:inputText>
+
+                        <br/>
+                        <p:outputLabel for="fecha" value="Fecha :" />
+                        <p:calendar id="fecha" value="#{mBUsuario.fecha}" />
+                        <br/>
+
+                        <p:commandButton value=" Aceptar " id="ajax1"   update="msn1" actionListener="#{mBUsuario.actualizar}"  />
+
+
+
+                    </h:panelGrid>
+
+                    <br/>
+
+                    <h:outputText id="msn1" value="#{mBUsuario.msn1}" />
+
+
+                </h:form>
+
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+
