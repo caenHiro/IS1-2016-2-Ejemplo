@@ -60,28 +60,25 @@ public class MBUsuario {
     public List<Integer> completeUser(String query) {
         UsuarioDaoHibernate usuarioDAO = new UsuarioDaoHibernate();
         List<Usuario> lista = usuarioDAO.findAll();
-        List<Usuario> allThemes = lista;
-        List<Integer> filteredThemes = new ArrayList<>();
-        for (int i = 0; i < allThemes.size(); i++) {
-            Usuario skin = allThemes.get(i);
-            if ((skin.getId() + "").toLowerCase().startsWith(query)) {
-                filteredThemes.add(skin.getId());
+        List<Integer> resultado = new ArrayList<>();
+        for (int i = 0; i < lista.size(); i++) {
+            Usuario temp = lista.get(i);
+            if ((temp.getId() + "").toLowerCase().startsWith(query)) {
+                resultado.add(temp.getId());
             }
         }
 
-        return filteredThemes;
+        return resultado;
     }
 
     public void getUsuario() {
         UsuarioDaoHibernate usuarioDAO = new UsuarioDaoHibernate();
         List<Usuario> lista = usuarioDAO.findAll();
-        List<Usuario> allThemes = lista;
-
-        for (Usuario skin : allThemes) {
-            if (this.id.equals((skin.getId()))) {
-                this.nombre = skin.getNombres();
-                this.apellido = skin.getApellidos();
-                this.fecha = skin.getFechaRegistro();
+        for (Usuario temp : lista) {
+            if (this.id.equals((temp.getId()))) {
+                this.nombre = temp.getNombres();
+                this.apellido = temp.getApellidos();
+                this.fecha = temp.getFechaRegistro();
                 break;
             }
 
@@ -92,11 +89,9 @@ public class MBUsuario {
     public void eliminaUsuario() {
         UsuarioDaoHibernate usuarioDAO = new UsuarioDaoHibernate();
         List<Usuario> lista = usuarioDAO.findAll();
-        List<Usuario> allThemes = lista;
-
-        for (Usuario skin : allThemes) {
-            if (this.id.equals((skin.getId()))) {
-                usuarioDAO.delete(skin);
+        for (Usuario temp:  lista) {
+            if (this.id.equals((temp.getId()))) {
+                usuarioDAO.delete(temp);
                 msn = "El usuario se elimino correctamente";
                 this.apellido = null;
                 this.fecha = null;
