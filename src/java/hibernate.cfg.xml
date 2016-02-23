@@ -6,7 +6,7 @@
         <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Usuarios</property>
         <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">hola123</property>
+        <property name="hibernate.connection.password"></property>
         <mapping resource="DAO/Usuario.hbm.xml"/>
     </session-factory>
 </hibernate-configuration>

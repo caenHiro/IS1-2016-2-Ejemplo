@@ -1,7 +1,5 @@
 package MB;
 
-import DAO.Usuario;
-import controlador.UsuarioDaoHibernate;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,8 +8,10 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 
-@ManagedBean
+import DAO.Usuario;
+import controlador.UsuarioDaoHibernate;
 
+@ManagedBean
 public class MBUsuario {
 
     private String nombre;
@@ -81,7 +81,6 @@ public class MBUsuario {
                 this.fecha = temp.getFechaRegistro();
                 break;
             }
-
         }
 
     }

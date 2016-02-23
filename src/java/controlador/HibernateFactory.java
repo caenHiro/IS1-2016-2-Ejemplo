@@ -86,6 +86,7 @@ public class HibernateFactory {
      *
      * @return @throws HibernateException
      */
+    @SuppressWarnings("deprecation")
     private static SessionFactory configureSessionFactory() throws HibernateException {
         Configuration configuration = new Configuration();
         configuration.configure();
