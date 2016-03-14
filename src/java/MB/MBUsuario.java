@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.annotation.PostConstruct;
 
 import javax.faces.bean.ManagedBean;
 
@@ -21,6 +22,15 @@ public class MBUsuario {
     private Integer id;
     private Date fecha;
 
+    
+    @PostConstruct
+     public void init() {
+       Usuario tmp = new Usuario();
+       this.nombre = tmp.getNombres();
+       this.apellido = tmp.getApellidos();
+       this.fecha = tmp.getFechaRegistro();
+       }
+    
     public void guarda() {
         Usuario tmp = new Usuario();
         try {
@@ -76,7 +86,7 @@ public class MBUsuario {
         UsuarioDaoHibernate usuarioDAO = new UsuarioDaoHibernate();
         List<Usuario> lista = usuarioDAO.findAll();
         List<Usuario> allThemes = lista;
-
+    try{
         for (Usuario skin : allThemes) {
             if (this.id.equals((skin.getId()))) {
                 this.nombre = skin.getNombres();
@@ -86,7 +96,10 @@ public class MBUsuario {
             }
 
         }
-
+    
+    }catch(Exception ex){
+        System.out.println(ex);
+     }
     }
 
     public void eliminaUsuario() {
